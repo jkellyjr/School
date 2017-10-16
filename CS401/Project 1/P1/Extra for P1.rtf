@@ -1,0 +1,55 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1344\cocoasubrtf720
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue192;\red42\green0\blue255;\red63\green127\blue95;
+\red106\green62\blue62;\red127\green0\blue85;}
+\margl1440\margr1440\vieww12240\viewh6960\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs22 \cf0 System.\cf2 out\cf0 .print(\cf3 "Please enter the filename:"\cf0 );\cf4 //asking for file\cf0 \
+		Scanner \cf5 \ul \ulc5 kb\cf0 \ulnone  = \cf6 new\cf0  Scanner(System.\cf2 in\cf0 );\
+		String \cf5 fileName\cf0  = \cf5 kb\cf0 .nextLine();  \
+		\
+		\
+		Scanner \cf5 inFile\cf0  = \cf6 new\cf0  Scanner(\cf6 new\cf0  File (\cf5 fileName\cf0 ));\cf4 //opens and reads file\cf0 \
+		\
+		\cf6 double\cf0  \cf5 balance\cf0  = \cf5 inFile\cf0 .nextDouble(); \cf4 //reads for balance\cf0 \
+		\
+		String \cf5 product1\cf0  = \cf5 inFile\cf0 .next();\cf4 //reads data (can use while loop instead)\cf0 \
+		\cf6 double\cf0  \cf5 price1\cf0  = \cf5 inFile\cf0 .nextDouble();\
+		\cf6 int\cf0  \cf5 quantity1\cf0  = \cf5 inFile\cf0 .nextInt();\
+		\
+		String \cf5 product2\cf0  = \cf5 inFile\cf0 .next();\
+		\cf6 double\cf0  \cf5 price2\cf0  = \cf5 inFile\cf0 .nextDouble();\
+		\cf6 int\cf0  \cf5 quantity2\cf0  = \cf5 inFile\cf0 .nextInt();\
+		\
+		String \cf5 product3\cf0  = \cf5 inFile\cf0 .next();\
+		\cf6 double\cf0  \cf5 price3\cf0  = \cf5 inFile\cf0 .nextDouble();\
+		\cf6 int\cf0  \cf5 quantity3\cf0  = \cf5 inFile\cf0 .nextInt();\
+\
+\
+\
+FileWriter \cf2 fwriter\cf0  = \cf6 new\cf0  FileWriter(\ul fileName\ulnone , \cf6 true\cf0 );\cf4 //allows amending\cf0 \
+PrintWriter outputFile = \cf6 new\cf0  PrintWriter(fwriter)\ul ;\
+\
+\pard\pardeftab720
+\cf0 \ulnone Scanner \cf5 inFile\cf0  = \cf6 new\cf0  Scanner(\cf6 new\cf0  File (\cf5 fileName\cf0 ));\cf4 //opens and reads file\cf0 \ul \ulc5 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720
+\cf6 \ulnone double\cf0  \cf5 balance\cf0  = 3000.00;\
+		String \cf5 product1\cf0  = \cf3 "lamps"\cf0 ;\
+		\cf6 int\cf0  \cf5 quantity1\cf0  = 400;\
+		\cf6 double\cf0  \cf5 price1\cf0  = 15.30;\
+		\
+		String \cf5 product2\cf0  = \cf3 "chairs"\cf0 ;\
+		\cf6 int\cf0  \cf5 quantity2\cf0  = 250;\
+		\cf6 double\cf0  \cf5 price2\cf0  = 19.95;\
+		\
+		String \cf5 product3\cf0  = \cf3 "desks"\cf0 ;\
+		\cf6 int\cf0  \cf5 quantity3\cf0  = 300;\
+		\cf6 double\cf0  \cf5 price3\cf0  = 95.00;\
+\pard\pardeftab720
+\cf0 \
+\
+}
