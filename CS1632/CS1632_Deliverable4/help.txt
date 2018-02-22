@@ -1,0 +1,7 @@
+- profiling acutally injects code into class files (this may cause corruption)
+	- provides a more robust test, but can cause corruption
+	- some profiling software is expensive 
+
+- sampler does not 
+
+

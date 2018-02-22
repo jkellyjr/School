@@ -5,3 +5,4 @@
 - CS401: Intermediate Java with John Ramirez.
 - CS449: Systems Software with Jonathan Misurda.
 - CS1550: Operating Systems with Jonathan MIsurda.
+- CS1632: Software Quality Assurance with Bill Laboon
