@@ -1,0 +1,8 @@
+- if number of threads is not an int ::NumberFormatException is thrown and
+system exits
+
+- if the num times == 100 :: the system recommends >100 and asks if we want to
+continue --> should only recommend when num <100
+
+- if num threads > num times :: system still runs the threads executing 0 
+operations
