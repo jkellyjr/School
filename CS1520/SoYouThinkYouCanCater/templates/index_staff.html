@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container-fluid">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-success" role="alert">
+                    <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <h1>Welcome {{ user.username }}</h1>
+
+        <div class="jumbotron">
+            {% if workList != undefined  %}
+                <div class="list-group">
+                    <h3>Your Upcoming events:</h3><br>
+                    {% for eve in workList %}
+                    <a href="/event/{{ eve.id }}">
+                        <li class="list-group-item list-group-item-action">
+                            <b>{{ eve.title }}:</b> {{ eve.date }}
+                        </li>
+                    </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h3>You're not scheduled for any upcoming events.</h3>
+            {% endif %}
+        </div>
+
+        <div class="jumbotron">
+            {% if possibleEvents != undefined %}
+                <div class="list-group">
+                    <h3>Possible events to work:</h3><br>
+                    {% for eve in possibleEvents %}
+                    <a href="/event/{{ eve.id }}">
+                        <li class="list-group-item list-group-item-action">
+                            <b>{{ eve.title }}:</b> {{ eve.date }}
+                            <div class="col-xs-2 pull-right">
+                                <a id="eventSignup" data-id="{{ eve.id }}" >Signup to Work</a>
+                            </div>
+                        </li>
+                    </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h3>You're not scheduled for any upcoming events.</h3>
+            {% endif %}
+        </div>
+
+    </div>
+    </div>
+
+    <script>
+        $(function () {
+            $('#eventSignup').on('click', function () {
+                var eventId = $(this).data('id')
+                $.ajax({
+                    type: 'POST',
+                    url: '/event_signup/' + eventId + ''
+                })
+            })
+        })
+    </script>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class='jumbotron'>
+        <div class="col-xs-2 pull-right">
+            <button data-toggle="modal" data-target="#createChat" class="btn btn-primary btn-block">Create a new chat room</button>
+        </div>
+        <h1>Welcome back {{ user.username }}</h1>
+    </div>
+
+    <div class='jumbotron'>
+        <ul class="list-group">
+            {% for room in rooms %}
+                <li class="list-group-item list-group-item-action" >
+                    {% if room.creator_id == user.id %}
+                        <div class="clearfix" data-id="{{ room.id }}">
+                            <button type="button" class="btn btn-default pull-right">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete Chat
+                            </button>
+                        </div>
+                    {% endif %}
+
+                    <a href="{{ url_for("chat_room", id = room.id) }}">
+                        <h3>{{ room.title }}</h3>
+                        {{ room.description }}
+                    </a>
+
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
+
+
+<div id="createChat" class="modal fade" role="dialog">
+     <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h3 class="modal-title">Create a new chat</h4>
+           </div>
+           <form method="post" action="/create_chat">
+               <div class="modal-body">
+                   <div class="modal-body">
+                        <div class="form-group">
+                            <label for="item">Title</label>
+                            <input type="text" class="form-control" id="title" name="title">
+                        </div>
+                        <div class="form-group">
+                            <label for="item">Description</label>
+                            <input type="text" class="form-control" id="description" name="description">
+                        </div>
+                   </div>
+               </div>
+               <div class="modal-footer">
+                   <button type="submit" class="btn btn-primary" id="signup_button">Create</button>
+                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>
+         </form>
+       </div>
+     </div>
+</div>
+
+<script>
+    $('.clearfix').on('click', function() {
+        var id = $(this).data('id')
+        alert(id)
+        $.ajax({
+            url: "/delete_chat/" + id,
+            type: 'post',
+            success: function() {
+                redirect(url_for("home"))
+            }
+        })
+    })
+</script>
+{% endblock %}

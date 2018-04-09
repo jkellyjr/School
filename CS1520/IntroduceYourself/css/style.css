@@ -1,0 +1,18 @@
+body {
+    background-color: #87CEEB;
+}
+
+#header {
+    color: #191970;
+    text-align: center;
+    text-decoration: underline;
+}
+
+#aboutMeHeader {
+    font-style: italic;
+}
+
+.goodbye {
+    color: #FF6347;
+    text-align: center;
+}

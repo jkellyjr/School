@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container-fluid">
+
+        <div class="jumbotron">
+            <h1>{{ event.title }}</h1>
+            <h3>Requested by: {{ customer.username}}</h3>
+            <h4>Date: {{ event.date }}</h4>
+            <hr><br>
+        </div>
+
+        <div class="jumbotron">
+            {% if staff|length > 0 %}
+                <h2>Staff for the event:</h2>
+                <ul class="list-group">
+                    {% for s in staff %}
+                        <li class="list-group-item list-group-item-action">{{ s.username }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h2>No staff have signed up.</h2>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

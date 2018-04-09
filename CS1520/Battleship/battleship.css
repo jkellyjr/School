@@ -1,0 +1,29 @@
+body {
+    background: #F08080;
+}
+
+h1 {
+    text-align: center;
+}
+
+.grid {
+    margin: 3em auto;
+    border-collapse: collapse;
+    text-align: right;
+}
+
+.grid td {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    text-align: center;
+    background-color: #00FFFF;
+}
+
+.grid td.clicked {
+    background-color: white;
+}
+
+.leaderBoard{
+    float: left;
+}

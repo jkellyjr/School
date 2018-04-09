@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container-fluid">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-success" role="alert">
+                    <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <h1>Welcome {{ user.username }}</h1>
+        
+        <div class="jumbotron">
+            <div class="row content">
+                <div class="col-sm-12">
+                    <a data-toggle="modal" href="#newEventModal">
+                        <div class="well">
+                            <h3>Request a new event</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="jumbotron">
+            {% if events != undefined %}
+            <h3>Your upcoming events:</h3><br>
+                <div class="row content">
+                    {% for eve in events %}
+                        <div class="col-sm-3">
+                            <div class="well">
+                                <a href="/event/{{ eve.id }}"><h4>{{ eve.title }}: {{ eve.date }}</h4></a>&emsp;&emsp;&emsp;&emsp;
+                                <form action="delete_event/{{eve.id}}" action='POST'>
+                                    <button type="submit" class="btn btn-default" aria-label="Right Align">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h3>No upcoming events</h3>
+            {% endif %}
+        </div>
+    </div>
+
+
+
+    {% if form != None %}
+        <div id="newEventModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Request a new event</h4>
+                    </div>
+                    <form method="post" action="/event">
+                        <div class="modal-body">
+                            <div class="modal-body">
+                                {{ form.hidden_tag() }}
+                                <div class="form-group">
+                                    <label for="item">Title</label>
+                                    <input type="text" class="form-control" id="title" name="title">
+                                </div>
+                                <div class="form-group">
+                                    <label for="item">Date</label>
+                                    <input type="date" class="form-control" id="date" name="date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" id="signup_button">Signup</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                  </form>
+                </div>
+
+              </div>
+        </div>
+    {% endif %}
+
+
+
+    <script>
+        // $(function () {
+        //     $('#confirmEventDelete').on('click', function () {
+        //         var eventId = $(this).data('id')
+        //         alert("event: " + eventId)
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: '/delete_event/' + eventId + ''
+        //         })
+        //
+        //     })
+        // })
+    </script>
+{% endblock %}

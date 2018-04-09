@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<script>
+    var room_id = parseInt("{{ room.id }}");
+</script>
+<script src="{{ url_for('static', filename='chat-room.js') }}"></script>
+
+<div class='container-fluid'>
+    <div class='jumbotron'>
+        <h1>{{ room.title }}</h1>
+        <h2>Description: {{ room.description }}</h2>
+    </div>
+    <div class='jumbotron'>
+        <p>Nothing to display just yet</p>
+
+        <br><hr>
+        <form>
+          <div class="form-group">
+              <label for="newMessage"> New Message:</label>
+              <input type="text" class="form-control" id="newMessage">
+              <button type="submit" class="btn btn-primary" id="newMessage" onClick="sendMessage">Send</button>
+          </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

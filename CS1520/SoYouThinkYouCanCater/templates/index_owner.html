@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container-fluid">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-success" role="alert">
+                    <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% if user.role == 'owner' %}
+            <div class="col-xs-2 pull-right">
+                <button data-toggle="modal" data-target="#addUserModal" class="btn btn-primary btn-block">Add Staff Member</button>
+            </div>
+        {% endif %}
+
+        <h1>Welcome {{ user.username }}</h1>
+
+        <div class="jumbotron">
+            {% if events != undefined %}
+                <ul class="list-group">
+                    <h3>Upcoming events:</h3><hr>
+                    {% for eve in events %}
+                            <a href="/event/{{ eve.id }}">
+                                <li class="list-group-item list-group-item-action">
+                                    <b>Title: {{ eve.title }}</b>&emsp;&emsp;Date: {{ eve.date }} &emsp;&emsp;
+                                    Workers:
+                                    {% for staff in eve.workers %}
+                                        {{ staff.username }}
+                                    {% endfor %}
+                                    {% if eve.num_workers < 3 %}
+                                        &emsp;&emsp;&emsp;&emsp;<b>MORE WORKERS NEEDED</b>
+                                    {% endif %}
+                                </li>
+                            </a>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h3>No upcoming events</h3>
+            {% endif %}
+
+
+
+        </div>
+
+    </div>
+
+    {% if form != None %}
+        <div id="addUserModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Add a new staff member</h4>
+                    </div>
+                    <form method="post" action="/signup/staff">
+                        <div class="modal-body">
+                            <div class="modal-body">
+
+                                    {{ form.hidden_tag() }}
+                                    <div class="form-group">
+                                        <label for="item">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="item">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="item">Confirm Password</label>
+                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                                    </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" id="signup_button">Signup</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
